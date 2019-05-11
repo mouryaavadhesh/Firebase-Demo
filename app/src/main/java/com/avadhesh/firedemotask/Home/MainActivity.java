@@ -9,22 +9,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.annimon.stream.Stream;
-import com.applandeo.materialcalendarview.CalendarUtils;
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.DatePicker;
-import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.builders.DatePickerBuilder;
 import com.applandeo.materialcalendarview.listeners.OnSelectDateListener;
-import com.applandeo.materialcalendarview.utils.DateUtils;
 import com.avadhesh.firedemotask.Adapter.AdapterEvent;
 import com.avadhesh.firedemotask.Adapter.EventData;
 import com.avadhesh.firedemotask.Adapter.KeyRef;
 import com.avadhesh.firedemotask.AppClass;
-import com.avadhesh.firedemotask.Home.Home_Model.Home_MI;
-import com.avadhesh.firedemotask.Home.Home_Presenter.Home_PI;
 import com.avadhesh.firedemotask.NodeFirebase;
 import com.avadhesh.firedemotask.PostEvent.EventPost;
 import com.avadhesh.firedemotask.R;
@@ -37,23 +30,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
 
-public class MainActivity extends AppCompatActivity implements HomeView, OnSelectDateListener {
+public class MainActivity extends AppCompatActivity implements  OnSelectDateListener {
 
     private RecyclerView mRecyclerView;
     private AdapterEvent mAdapter;
-    private Home_PI chatPi;
+
     private ArrayList<EventData> eventData = new ArrayList<>();
     private ArrayList<String> keyUniqList = new ArrayList<>();
     final Set<EventData> setListData = new HashSet();
@@ -78,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements HomeView, OnSelec
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
         selectDate = findViewById(R.id.selectDate);
         GetAllFeed = NodeFirebase.getInstance().getEventList(firebaseUser.getUid());
-        chatPi = new Home_PI(this, new Home_MI(), MainActivity.this);
         mRecyclerView = findViewById(R.id.my_recycler_view);
         rangeDate = findViewById(R.id.range_picker);
         // use a linear layout manager
@@ -148,37 +138,6 @@ public class MainActivity extends AppCompatActivity implements HomeView, OnSelec
     }
 
 
-    @Override
-    public void getFeedList(ArrayList<EventData> tempMessageArrayList, List<KeyRef> mKeys1) {
-        List<KeyRef> temKey = new ArrayList<>();
-
-        setListData.addAll(tempMessageArrayList);
-        setListDataKey.addAll(mKeys1);
-        tempMessageArrayList = new ArrayList<>(setListData);
-        mKeys1 = new ArrayList<>(setListDataKey);
-
-        Collections.sort(tempMessageArrayList, (o1, o2) -> o2.getDateTime().compareTo(o1.getDateTime()));
-        Collections.sort(mKeys1, (o1, o2) -> o2.getDateTime().compareTo(o1.getDateTime()));
-        setListData.addAll(tempMessageArrayList);
-        setListDataKey.addAll(mKeys1);
-        eventData = new ArrayList<>(setListData);
-        temKey = new ArrayList<>(setListDataKey);
-        setKeyUniq.clear();
-        for (int i = 0; i < temKey.size(); i++) {
-            setKeyUniq.add(temKey.get(i).getKey());
-
-        }
-        keyUniqList = new ArrayList<>(setKeyUniq);
-
-        //   mAdapter = new AdapterEvent(MainActivity.this, eventData, keyUniqList);
-
-        if (eventData.size() != 0) {
-            mRecyclerView.setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
-            mRecyclerView.setVisibility(View.VISIBLE);
-        } else
-            mRecyclerView.setVisibility(View.INVISIBLE);
-    }
 
     public void getData() {
         List<KeyRef> temKey = new ArrayList<>();
