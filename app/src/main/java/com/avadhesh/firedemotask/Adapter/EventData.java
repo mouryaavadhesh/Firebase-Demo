@@ -1,6 +1,7 @@
 package com.avadhesh.firedemotask.Adapter;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 public class EventData implements Serializable {
@@ -16,6 +17,7 @@ public class EventData implements Serializable {
 
     }
     public EventData(String title, String description,  long date, Date dateTime,String eventDate,String participants
+
     ) {
 
         this.title = title;
@@ -24,8 +26,10 @@ public class EventData implements Serializable {
         this.dateTime = dateTime;
         this.eventDate=eventDate;
         this.participants=participants;
+
     }
     public EventData(String id, String title, String description,  long date, Date dateTime,String eventDate,String participants
+
     ) {
         this.id = id;
         this.title = title;
@@ -34,7 +38,6 @@ public class EventData implements Serializable {
         this.dateTime = dateTime;
         this.eventDate=eventDate;
         this.participants=participants;
-
 
     }
 
@@ -92,6 +95,8 @@ public class EventData implements Serializable {
     public String getEventDate() {
         return eventDate;
     }
+
+
 
     public void setEventDate(String eventDate) {
         this.eventDate = eventDate;

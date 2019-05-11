@@ -42,6 +42,8 @@ public class EventPost extends AppCompatActivity implements View.OnClickListener
     private DatabaseReference mDatabase;
     private int mYear, mMonth, mDay;
     private Spinner spinner;
+    private  Calendar mCalendar = Calendar.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +151,7 @@ public class EventPost extends AppCompatActivity implements View.OnClickListener
                 mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-                final Calendar mCalendar = Calendar.getInstance();
+
                 DatePickerDialog mDatePickerDialog = new DatePickerDialog(this,
                         (view, year, monthOfYear, dayOfMonth) -> {
                             // TODO Auto-generated method stub

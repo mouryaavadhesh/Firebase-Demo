@@ -22,6 +22,14 @@
         android:text="@string/select_date"
     />
 
+    <TextView
+        android:id="@+id/range_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/select_range" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"

@@ -46,7 +46,7 @@ public class EventEditDelete extends AppCompatActivity implements View.OnClickLi
     private Query query;
     private ChildEventListener childEventListener;
     private String email,key;
-
+    private  Calendar mCalendar = Calendar.getInstance();
 
 
     @Override
@@ -166,7 +166,7 @@ public class EventEditDelete extends AppCompatActivity implements View.OnClickLi
 
 
 
-                final Calendar mCalendar = Calendar.getInstance();
+
                 DatePickerDialog mDatePickerDialog = new DatePickerDialog(this,
                         (view, year, monthOfYear, dayOfMonth) -> {
                             // TODO Auto-generated method stub
